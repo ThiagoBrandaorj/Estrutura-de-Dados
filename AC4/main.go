@@ -1,43 +1,40 @@
-package ac4
+package main
 
-import()
+import("fmt")
 
-func algoritimo_Hanoi(n int , A , B , C rune){
-
-}
-
-func buscaMatriz(m [][]int, n , k int)bool{
-	i:= 0
-	var j int 
-	for i < n {
-		j = 0
-		for j < n{
-			if m[i][j] == k{
-				return true
-			}
-			j ++
+func torreHanoi(n int , A[]int , B[]int , C[]int){
+	if n > 0{
+		for i:= 0 ;i<n; i++{
+			A[i] == n - i
 		}
-		i++
+		return torreHanoi(n - 1, A , C , B)
+
 	}
-	return false
 }
 
-func somaPar(a array, tamanho int,alvo int){
-	i:= 0
-	for i < tamanho - 1{
-		j:= i + 1
-		for j <  tamanho{
-			if a[i] + a[j] = alvo{
-				return a[i], a[j]
-			}
-			j++
-		}
-		i++
+func fatorial(n int) int{
+	if n > 0{
+		return n * fatorial(n - 1)
+	}else if n == 0{
+		return 1
+	}else{
+		fmt.Println("Digite um numero inteiro")
+		return -1
 	}
-	return (-1,-1)
 }
 
-func main(){
-	matriz := [][]int := {[1,2],[2,4]}
-	buscaMatriz([][],4,2)
+func main() {
+	var x int
+	fmt.Println("Digite um número inteiro:")
+	_, err := fmt.Scanln(&x)
+
+	if err != nil {
+		fmt.Println("Erro ao ler o número:", err)
+		return
+	}
+
+	result := fatorial(x)
+	if result != -1 {
+		fmt.Println("Fatorial de", x, "é:", result)
+	}
 }
