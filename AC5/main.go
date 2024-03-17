@@ -10,6 +10,7 @@ func Triangulo(){
 	array := [3] *float64{&a,&b,&c}
 	var mensagem = ""
 	fmt.Scan(&a,&b,&c)
+	fmt.Scanln()
 	for i:= 0; i < len(array) - 1; i++{
 		for j:= 0; j < len(array) - i - 1; j++{
 			if *array[j] < *array[j + 1]{
