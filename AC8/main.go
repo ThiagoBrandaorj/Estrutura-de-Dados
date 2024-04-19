@@ -53,8 +53,7 @@ func Led(){
 func CifraCesar(){
 	var N, deslocamento int
 	var sentenca string
-	var alfabeto = []string{"A","B","C","D","E","F","G","H","I","J","K",
-	"L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"}
+	var alfabeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	fmt.Scan(&N)
 	if N > 0{
 		for i:= 0; i < N; i++{
@@ -62,13 +61,62 @@ func CifraCesar(){
 			if len(sentenca) >= 1 && len(sentenca) <= 50{
 				fmt.Scan(&deslocamento)
 				if deslocamento >= 0{
-					
+					novastr := ""
+					for i:= 0; i< len(sentenca); i++{
+						char := sentenca[i]
+						if char >= 'A' && char <= 'Z'{
+							index := strings.IndexByte(alfabeto,char)
+							novoindex := (index - deslocamento + 26) % 26
+							novastr += string(alfabeto[novoindex])
+						}
+					}
+					fmt.Println(novastr)
 				}
 			}
 		}
 	}
 }
+//4
+func PapaiNoel(){
+	var entrada string
+	paises:= map[string]string{
+		"brasil":     "Feliz Natal!",
+        "alemanha":      "Frohliche Weihnachten!",
+        "austria":      "Frohe Weihnacht!",
+        "coreia":    "Chuk Sung Tan!",
+        "espanha":      "Feliz Navidad!",
+        "greci":  "Kala Christougena!",
+        "estados-unidos":      "Merry Christmas!",
+        "inglaterra":      "Merry Christmas!",
+        "australia":      "Merry Christmas!",
+        "portugal":      "Feliz Natal!",
+        "suecia":      "God Jul!",
+        "turquia":      "Mutlu Noeller",
+        "argentina":      "Feliz Navidad!",
+        "chile":      "Feliz Navidad!",
+        "mexico":      "Feliz Navidad!",
+        "antardida":      "Merry Christmas!",
+        "canada":      "Merry Christmas!",
+        "irlanda":      "Nollaig Shona Dhuit!",
+        "belgica":      "Zalig Kerstfeest!",
+        "italia":      "Buon Natale!",
+        "libia":      "Buon Natale!",
+        "siria":      "Milad Mubarak!",
+        "marrocos":      "Milad Mubarak!",
+        "japao":     "Merii Kurisumasu!",
+	}
+	for{
+	fmt.Scan(&entrada)
+	if cumprimento , ok:= paises[entrada]; ok{
+		fmt.Println(cumprimento)
+	}else{
+		fmt.Println("--- NOT FOUND ---")
+	}
+   } 
+}
 func main(){
 	//RevisaoContrato()
-	Led()
+	//Led()
+	//CifraCesar()
+	//PapaiNoel()
 }
