@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"net/http"
 
-	"api/handlers"
-	"api/handlers/lista"
-	"api/processamento"
+	"AP1/handlers"
+	"AP1/handlers/lista"
+	"AP1/processamento"
 
 	"github.com/gorilla/mux"
 )
