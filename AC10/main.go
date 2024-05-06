@@ -1,27 +1,32 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
-//1
-func figurinhas(){
-	var N, F1, F2, R int
-	fmt.Scan(&N)
-	if N >= 1 && N <= 3000{
-		for i:= 0 ; i < N ; i++{
-			fmt.Scanf("%n %n",&F1, &F2)
-			if F1 >= 1 && F1 <= 1000 &&  F2 >= 1 && F2 <= 1000{
-				for {
-
-				}
-			}
-		}
+// Função para calcular o MDC de dois números usando o algoritmo de Euclides
+func mdc(a, b int) int {
+	for b != 0 {
+		a, b = b, a%b
 	}
-}
-//2
-func Dama(){
-	
+	return a
 }
 
-func main(){
+func main() {
+	var N, F1, F2 int
 
+	// Lê o número de casos de teste
+	fmt.Scanln(&N)
+
+	// Para cada caso de teste
+	for i := 0; i < N; i++ {
+		// Lê a quantidade de figurinhas de Ricardo e Vicente
+		fmt.Scanln(&F1, &F2)
+
+		// Calcula o MDC das quantidades de figurinhas
+		maxTroca := mdc(F1, F2)
+
+		// Imprime o tamanho máximo da pilha que pode ser trocada
+		fmt.Println(maxTroca)
+	}
 }
