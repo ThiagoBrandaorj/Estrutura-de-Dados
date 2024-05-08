@@ -3,78 +3,74 @@ package main
 import "fmt"
 
 type No struct {
-    data int  
-    next *Node // Referência para o próximo nó na fila
+    valor int  
+    prox *No 
 }
 
 type Fila struct {
-    front *No // Referência para o primeiro nó da fila
-    rear  *No // Referência para o último nó da fila
+    tam int
+    inicio *No  
+    fim  *No
 }
 
-// Função para criar uma nova fila vazia
-func NovaFila() *Fila {
-    return &Fila{}
-}
+func (f *Fila) Inserir(nvalor int) {
+    novoNo := &No{valor: nvalor}
 
-// Função para verificar se a fila está vazia
-func (f *Fila) IsEmpty() bool {
-    return f.front == nil
-}
-
-// Função para inserir um elemento na fila
-func (q *Fila) Enqueue(data int) {
-    newNode := &No{data, nil}
-
-    if q.rear == nil {
-        q.front = newNode
-        q.rear = newNode
+    if f.inicio == nil {
+        f.inicio = novoNo
+        f.fim = f.inicio
     } else {
-        q.rear.next = newNode
-        q.rear = newNode
+        f.fim.prox = novoNo
+        f.fim = novoNo
     }
+    f.tam++
 }
 
-// Função para remover um elemento da fila
-func (q *Fila) Dequeue() int {
-    if q.IsEmpty() {
-        panic("A fila está vazia")
+func (f *Fila) Remover() error {
+    if f.inicio == nil {
+        return fmt.Errorf("A Fila está vazia")
     }
 
-    data := q.front.data
-    q.front = q.front.next
+    if f.tam == 1{
+        f.inicio = nil
+        f.fim = nil
+    } else{
+        aux := f.inicio
+        f.inicio = f.inicio.prox
+        aux.prox = nil
 
-    if q.front == nil {
-        q.rear = nil
+        if f.inicio.prox == nil{
+            f.fim = f.inicio
+        }
     }
 
-    return data
+    f.tam--
+    return nil
 }
 
-// Função para percorrer e imprimir os elementos da fila
-func (q *Fila) Traverse() {
-    if q.IsEmpty() {
+func (f *Fila) Imprimir() {
+    if f.inicio == nil {
         fmt.Println("A fila está vazia")
-        return
+    } else{
+        no := f.inicio
+        for no.prox != nil{
+            fmt.Print(no.valor, " / ")
+            no = no.prox
+        }
+        fmt.Println(no.valor)
     }
-
-    current := q.front
-    for current != nil {
-        fmt.Printf("%d ", current.data)
-        current = current.next
-    }
-    fmt.Println()
 }
 
 func main() {
-    q := NewQueue()
-    q.Enqueue(10)
-    q.Enqueue(20)
-    q.Enqueue(30)
-    q.Enqueue(40)
+    f := Fila{}
+    f.Inserir(10)
+    f.Inserir(20)
+    f.Inserir(30)
+    f.Inserir(40)
     fmt.Println("Elementos da fila:")
-    q.Traverse()
-    fmt.Println("Removendo um elemento da fila:", q.Dequeue())
+    f.Imprimir()
+    fmt.Println("Removendo um elemento da fila:")
+    f.Remover()
     fmt.Println("Elementos da fila após a remoção:")
-    q.Traverse()
+    f.Imprimir()
 }
