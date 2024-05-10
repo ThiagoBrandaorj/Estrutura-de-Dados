@@ -46,14 +46,39 @@ func Aviao(){
 	fmt.Scanf("%d %d %d\n", &C, &P, &F)
 	if C * F <= P{
 		fmt.Println("S")
-	} else{""
+	} else{
 		fmt.Println("N")
 	}
 }
-//4 
+//4
+func SequenciaSecreta(){
+	var N, V, qtdMaxima int
+	fmt.Scanf("%d\n",&N)
+	if N >= 3 && N <= 300{
+		sequencia := make([]int, N)
+		for i:=0; i< N; i++{
+			fmt.Scanf("%d\n", &V)
+			if V == 1 || V == 2{
+				sequencia[i] = V
+			}
+		}
+		for i:=0; i < N ; i++{
+			if i == N-1 && sequencia[i] != sequencia[i-1]{
+				qtdMaxima++
+			}
+			if i < N - 1{
+				if sequencia[i] != sequencia[i+1]{
+					qtdMaxima++
+				}
+			}
+		}
+	}
+	fmt.Printf("%d\n", qtdMaxima)
+}
 
 func main(){
 	//Distancia()
 	//Feira()
-	Aviao()
+	//Aviao()
+	SequenciaSecreta()
 }
