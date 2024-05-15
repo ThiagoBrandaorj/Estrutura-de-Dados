@@ -48,29 +48,17 @@ func TopN() {
 //3
 func Escada() {
 	var N, H, C, L int
-
     for {
         fmt.Scan(&N)
-        
         fmt.Scan(&H, &C, &L)
-        
-        // Área que cobre os degraus
-        areaDegraus := N * (C * L)
-        
-        // Área de transição
-        alturaTransicao := H * (N - 1)
-        areaTransicao := alturaTransicao * C
-        
-        // Área total
-        areaTotal := areaDegraus + areaTransicao
-        
-        // Convertendo para metros quadrados
-        areaTotalMetrosQuadrados := float64(areaTotal) / 10000 // 100 cm² = 1 m²
-        
-        // Imprimir com 4 casas decimais
+        parteinclinada := 0.5 * (float64(C) * float64(N) * float64(H))
+		parteplana := float64(N) * float64(C) * float64(L)
+        areaTotal := parteinclinada + parteplana
+        areaTotalMetrosQuadrados := areaTotal / 10000
         fmt.Printf("%.4f\n", areaTotalMetrosQuadrados)
     }
 }
+
 func main() {
 	//Alarme()
 	//TopN()
